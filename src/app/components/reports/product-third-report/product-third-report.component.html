@@ -1,0 +1,45 @@
+<div class="rxp-header-tool-box">
+    <ul class="nav navbar-nav rxp-header-tool-box-nav">
+        <!--
+      <div class="navbar-form search-form rxp-header-tool-search-box" id="navbar-search">
+          <input class="form-control rxp-search-text-box"  placeholder="Search for customer by mobile..." 
+            type="text" autocomplete="off" [(ngModel)]="searchKey" value=""/>
+          <button class="btn btn-default" type="button" (click)="searchOrderByCustomerMobile()">
+            <i class="icon-magnifier"></i>
+          </button>
+          <button class="btn btn-clear-text" *ngIf="searchKey" aria-label="Clear" (click)="onSearchClear()">
+            <mat-icon>close</mat-icon>
+          </button>
+      </div>-->
+      <!--<li>
+        <a (click)="onAdd()" class="icon-menu d-none d-sm-block">
+          <i class="wi wi-day-sunny"></i> Add
+        </a>
+      </li>-->
+    </ul>
+    <br>
+  
+    
+  </div>
+      <!--start new searches-->
+      <div style='display:block'>
+        <form #addClientForm="ngForm" (ngSubmit)="GetAllProductsfromStoreOfSelectedCategory()" novalidate>  
+          <div class="row" >   
+            <mat-form-field class="example-full-width" >
+                <mat-label>choose a category </mat-label>
+                <mat-select [(ngModel)]="selectedCategoryID" name="selectedCategoryID" required>
+                    <mat-option *ngFor="let category of categories" [value]="category._id">
+                            {{category.Category_Name}}
+                    </mat-option>
+                </mat-select>
+              </mat-form-field>  
+            <button type="submit" class="btn btn-success" >Search</button>   
+ 
+            </div>  
+        </form>
+    </div>
+<div class="body">
+    <h3>Total Store Quantities for the selected category : {{ Total_Store_Quantities }}</h3>
+    <h3>Total Store Costs the selected category : {{ Total_Store_Cost }}</h3>
+</div>
+       

@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+<form [formGroup]="categoryTypesService.form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>select Aluminum Category</mat-label>
+      <mat-select formControlName="ACT_ACat_Seri">
+        <mat-option *ngFor="let AluminumCategory of AluminumCategories" [value]="AluminumCategory._id">
+          {{ AluminumCategory.ACN_Numbers }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+   <mat-form-field appearance="fill" class="form-field">
+      <mat-label>select Aluminum Type</mat-label>
+      <mat-select formControlName="ACT_AT_Seri">
+        <mat-option *ngFor="let AluminumType of AluminumTypes" [value]="AluminumType._id">
+          {{ AluminumType.ACN_Numbers }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-slide-toggle
+      *ngIf="title.includes('Edit')"
+      matInput
+      formControlName="Country_IsActive"
+    >
+      Country Status</mat-slide-toggle
+    >
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+    <button
+      mat-raised-button
+      mat-primary
+      type="submit"
+      [disabled]="categoryTypesService.form.invalid"
+    >
+      Submit
+    </button>
+  </mat-dialog-actions>
+</form>

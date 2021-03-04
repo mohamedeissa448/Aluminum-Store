@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>{{ title }} for {{ Customer_Name }}, Code : {{ Customer_Code }}</h2>
+<mat-dialog-content  class="d-flex p-2">
+    <mat-form-field appearance="fill"class="form-field">
+        <mat-label>Status</mat-label>
+        <mat-select name="Customer_Status" [(ngModel)]="Customer_Status">
+          <mat-option *ngFor="let status of statusArray" [value]="status.value">
+            {{status.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-dialog-actions>
+        <button
+          mat-raised-button
+          mat-primary
+          type="button"
+          (click) = "submit()"
+        >
+          Submit
+        </button>
+      </mat-dialog-actions>
+</mat-dialog-content>

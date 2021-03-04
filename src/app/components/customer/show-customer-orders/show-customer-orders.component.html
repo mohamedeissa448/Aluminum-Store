@@ -1,0 +1,22 @@
+<!--start table-->
+<table>
+    <thead>
+      <tr>
+        <th>Order Code</th>
+        <th>Order Date</th>
+        <th>Order Status</th>
+        <th>Order Total Price</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr  *ngFor="let order of customerOrders">
+        <td>{{ order.Order_Code }}</td>
+        <td>{{ order.Order_Date | date }}</td>
+        <td>{{ order.Order_Status }}</td>
+        <td>{{ order.Order_TotalProductSellingAmount }}</td>
+      </tr>
+      <br>
+      
+  </tbody>
+</table>
+<!-- end table-->

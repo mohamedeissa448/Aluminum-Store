@@ -1,0 +1,88 @@
+<mat-toolbar>
+  <div class="mat-toolbar-tools">
+      <h3 class="center-text">  Pay To {{AffiliateSeller_Name}}</h3>
+  </div>
+</mat-toolbar>
+<mat-card class="padded-content-page" >
+  <div layout="row" class="rxp-margin-top-medium hcm-contact-add-form" layout-xs="column">
+      <!--start inputs-->
+      <form  #ourForm="ngForm"  (ngSubmit)="onSubmit()">
+          <mat-dialog-content  class="d-flex p-2">
+              <mat-form-field class="form-field">
+                <mat-label>Choose a date*</mat-label>
+                <input matInput [matDatepicker]="picker" name="Payment_Date" [(ngModel)]="Payment_Date" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error>Please choose a date</mat-error>
+              </mat-form-field>
+              <mat-divider></mat-divider>
+
+              <mat-form-field class="form-field">
+                <mat-select [(ngModel)]="Payment_PaidMethod" name="Payment_PaidMethod"  placeholder="method" required>
+                  <mat-option *ngFor="let method of paymentMethods" [value]="method._id">
+                    {{method.PaymentMethod_Name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error>Please choose a method</mat-error>
+                <br>
+              </mat-form-field>
+              <mat-divider></mat-divider>
+            
+
+              <mat-form-field class="form-field">
+                <input
+                  matInput
+                  placeholder="Reference Number*"
+                  name="Payment_PaymentRefranceNumber"
+                  [(ngModel)]="Payment_PaymentRefranceNumber"
+                  type="text"
+                
+                />
+              </mat-form-field>
+
+              <mat-form-field class="form-field">
+                
+                <mat-label>Extra Details</mat-label>
+                <textarea matInput
+                  name="Payment_PaymentExtraDetails"
+                  [(ngModel)]="Payment_PaymentExtraDetails"
+                  rows="4"
+                  cols="10">
+              </textarea>
+              </mat-form-field>
+
+              <mat-form-field class="form-field">
+                <input
+                  matInput
+                  placeholder="Amount of Payment*"
+                  name="Payment_PaidAmount"
+                  [(ngModel)]="Payment_PaidAmount"
+                  type="number"
+                  required
+                />
+                <mat-error>Please enter a amount of payment </mat-error>
+              </mat-form-field>
+              <mat-divider></mat-divider>
+              </mat-dialog-content>
+              
+      </form>    
+      <!-- end inputs -->
+  </div>
+  <mat-divider class="rxp-margin-top-larg"></mat-divider>
+  
+</mat-card>
+
+<mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="onClose()">Close</button>
+  <button
+    mat-raised-button
+    mat-primary
+    type="button"
+    (click)="onSubmit()"
+    [disabled]="!ourForm.valid"
+  >
+    Submit
+  </button>
+</mat-dialog-actions>
+
+

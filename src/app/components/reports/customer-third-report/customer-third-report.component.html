@@ -1,0 +1,101 @@
+<div class="rxp-header-tool-box">
+    <ul class="nav navbar-nav rxp-header-tool-box-nav">
+      <div class="navbar-form search-form rxp-header-tool-search-box" id="navbar-search">
+          <input class="form-control rxp-search-text-box" (keyup)="applyFilter()" placeholder="Search for customers..." 
+            type="text" autocomplete="off" [(ngModel)]="searchKey" />
+          <button class="btn btn-default" type="button">
+            <i class="icon-magnifier"></i>
+          </button>
+          <button class="btn btn-clear-text" *ngIf="searchKey" aria-label="Clear" (click)="onSearchClear()">
+            <mat-icon>close</mat-icon>
+          </button>
+      </div>
+      
+    </ul>
+  </div>
+  <!--start search by customer name to get only orders-->
+  <div layout="row" class="rxp-margin-top-medium" layout-xs="column">
+    <div flex="75" flex-xs="100" layout="column">
+      <form >
+        <div
+          class="mat-block rxp-search-text-box-large rxp-no-margin"
+        >
+          <mat-form-field class="example-full-width">
+            <input
+            matInput
+            placeholder="Number Of Orders*"
+            name="NumberOfOrders"
+            [(ngModel)] = "NumberOfOrders"
+            type="number"
+          />
+          </mat-form-field>
+          <button type="button" (click)="search()" class="btn btn-success mr-1" title="search" >
+            <span class="material-icons">
+                search
+            </span>
+        </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!--end search -->
+  <div class="rxp-data-table-bg">
+    <table mat-table [dataSource]="customers" class="mat-elevation-z8" matSort>
+      <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+  
+      <ng-container matColumnDef="Code">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+            <td mat-cell *matCellDef="let element">
+                  {{ element.Customer_Code }}
+            </td>
+      </ng-container>            
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Customer_Name }}
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="NumberOfOrders">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Number Of Orders</th>
+        <td mat-cell *matCellDef="let element">
+          {{ NumberOfOrders }}
+        </td>
+      </ng-container>
+  
+      
+      
+      <ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          Loading data...
+        </mat-footer-cell>
+      </ng-container>
+      <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          No data.
+        </mat-footer-cell>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <mat-footer-row
+        *matFooterRowDef="['loading']"
+        [ngClass]="{ hide: customers != null }"
+      ></mat-footer-row>
+      <mat-footer-row
+        *matFooterRowDef="['noData']"
+        [ngClass]="{ hide: !(customers != null && customers.length == 0) }"
+      ></mat-footer-row>
+    </table>
+    <mat-card *ngIf="isLoading" class="rxp-ingrid-loading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </mat-card>
+  </div>
+  <mat-paginator
+    [length]="100"
+    [pageSize]="20"
+    [pageSizeOptions]="[20, 25, 50, 100]"
+    showFirstLastButtons
+  >
+  </mat-paginator>
+  

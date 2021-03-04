@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+<form [formGroup]="categoriesService.form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>select Aluminum Code No.</mat-label>
+      <mat-select formControlName="ACat_ACN_Seri">
+        <mat-option *ngFor="let AluminumCodeNumber of AluminumCodeNumbers" [value]="AluminumCodeNumber._id">
+          {{ AluminumCodeNumber.ACN_Numbers }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Description"
+        formControlName="ACat_Desc"
+      />
+      <mat-error>Please enter a  description</mat-error>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+    <button
+      mat-raised-button
+      mat-primary
+      type="submit"
+      [disabled]="categoriesService.form.invalid"
+    >
+      Submit
+    </button>
+  </mat-dialog-actions>
+</form>

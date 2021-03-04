@@ -1,0 +1,52 @@
+<mat-toolbar>
+    <div class="mat-toolbar-tools">
+        <h3 class="center-text">{{title}} for {{AffiliateSeller_Name}}</h3>
+    </div>
+  </mat-toolbar>
+<mat-card class="padded-content-page" >
+    <div layout="row" class="rxp-margin-top-medium hcm-contact-add-form" layout-xs="column">
+        <p>Hint : click on <span style="color : red">delete icon </span> will delete the financial transaction record on the same row</p>
+        <!--start table-->
+        <table>
+	
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Math Sign</th>
+                <th>Amount</th>
+                <th>related Order Code(if found)</th>
+                <th>Transaction Type</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr  *ngFor="let transaction of AffiliateSeller_FinancialTransactions">
+                <td>{{ transaction.AffiliateSellerFinancialTransaction_Date | date}}</td>
+                <td>{{ transaction.AffiliateSellerFinancialTransaction_MathSign }}</td>
+                <td>{{ transaction.AffiliateSellerFinancialTransaction_Amount }}</td>
+                <td *ngIf ="transaction.AffiliateSellerFinancialTransaction_Order">{{ transaction.AffiliateSellerFinancialTransaction_Order.Order_Code }}</td>
+                <td *ngIf ="!transaction.AffiliateSellerFinancialTransaction_Order"></td>
+                <td>{{ transaction.AffiliateSellerFinancialTransaction_Type }}</td>
+
+                <td> 
+                    <span class="material-icons deleteIcon"(click)="deleteFinancialTransaction(transaction)">
+                    delete
+                    </span>
+                </td>
+              </tr>
+              <br>
+              
+          </tbody>
+          <caption>All Financial Tansactionsr</caption>
+        </table>
+        <!-- end table-->
+        
+    </div>
+    <mat-divider class="rxp-margin-top-larg"></mat-divider>
+    
+</mat-card>
+
+<mat-dialog-actions>
+    <button mat-raised-button class="close"color="warn" (click)="onClose()">Close</button>
+  </mat-dialog-actions>
+
+

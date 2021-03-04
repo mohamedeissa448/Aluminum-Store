@@ -1,0 +1,146 @@
+<div class="rxp-header-tool-box">
+    <ul class="nav navbar-nav rxp-header-tool-box-nav">
+        <!--
+      <div class="navbar-form search-form rxp-header-tool-search-box" id="navbar-search">
+          <input class="form-control rxp-search-text-box"  placeholder="Search for customer by mobile..." 
+            type="text" autocomplete="off" [(ngModel)]="searchKey" value=""/>
+          <button class="btn btn-default" type="button" (click)="searchOrderByCustomerMobile()">
+            <i class="icon-magnifier"></i>
+          </button>
+          <button class="btn btn-clear-text" *ngIf="searchKey" aria-label="Clear" (click)="onSearchClear()">
+            <mat-icon>close</mat-icon>
+          </button>
+      </div>-->
+      <!--<li>
+        <a (click)="onAdd()" class="icon-menu d-none d-sm-block">
+          <i class="wi wi-day-sunny"></i> Add
+        </a>
+      </li>-->
+    </ul>
+    <br>
+  
+    
+  </div>
+      <!--start new searches-->
+      <div style='display:block'>
+        <form #addClientForm="ngForm" (ngSubmit)="searchdataBySupplierId()" novalidate>  
+          <div class="row" >   
+            <mat-form-field class="example-full-width">
+                <mat-label>show supplier financial transactions of bills</mat-label>
+                <div>
+                  <mat-chip-list #chipList>
+                    <mat-chip
+                      *ngFor="let supplier of searchedSuppliers"
+                      [selectable]="selectable"
+                      [removable]="removable"
+                      (removed)="removeSupplier(supplier)" >
+                      {{supplier}}
+                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input
+                      placeholder="Select supplier..."
+                      #supplierInput
+                      [formControl]="supplierCtrl"
+                      [matAutocomplete]="autoSupplier"
+                      [matChipInputFor]="chipList"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      [matChipInputAddOnBlur]="addOnBlur"
+                      (matChipInputTokenEnd)="addSupplier($event)"
+                      >
+                      
+                  </mat-chip-list>
+                  <mat-autocomplete #autoSupplier="matAutocomplete" (optionSelected)="selectedSupplier($event)"disabled>
+                    <mat-option *ngFor="let supplier of filteredSuppliers | async" [value]="supplier">
+                      {{supplier.Supplier_Name}},Code:({{supplier.Supplier_Code}})
+                    </mat-option>
+                  </mat-autocomplete>
+              </div>
+              </mat-form-field>  
+            <button type="submit" class="btn btn-success" >Search</button>   
+ 
+      </div>  
+        </form>
+        <h3 >Sum Of Amount Of All Bills and Returned Bills : {{ TotalSumOfAmountOfAllBillsAndBillsReturned }}</h3>
+        </div>
+        <!--end new searches -->
+    <div class="rxp-data-table-bg">
+        <table mat-table [dataSource]="supplierBillsAndReturnedBills" class="mat-elevation-z8" matSort>
+            <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+          
+            <ng-container matColumnDef="Transaction Date">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Payment Date</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.Trans.SupplierFinancialTransaction_Date | date}}
+              </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="Math Sign">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Math Sign</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.Trans.SupplierFinancialTransaction_MathSign }}
+              </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="Amount">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.Trans.SupplierFinancialTransaction_Amount }}
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="Bill Code">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Bill Code</th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.Bill.Code }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Bill Return Code">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Bill Return Code</th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.BillReturn.Code }}
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="Transaction Type">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Transaction Type</th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.Trans.SupplierFinancialTransaction_Type }}
+                </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="loading">
+              <mat-footer-cell *matFooterCellDef colspan="6">
+                Loading data...
+              </mat-footer-cell>
+            </ng-container>
+            <ng-container matColumnDef="noData">
+              <mat-footer-cell *matFooterCellDef colspan="6">
+                No data.
+              </mat-footer-cell>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            <mat-footer-row
+              *matFooterRowDef="['loading']"
+              [ngClass]="{ hide: supplierBillsAndReturnedBills != null }"
+            ></mat-footer-row>
+            <mat-footer-row
+              *matFooterRowDef="['noData']"
+              [ngClass]="{
+                hide: !(supplierBillsAndReturnedBills && supplierBillsAndReturnedBills.data != null && supplierBillsAndReturnedBills.data.length == 0)
+              }"
+            ></mat-footer-row>
+          </table>
+          <mat-card *ngIf="isLoading" class="rxp-ingrid-loading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </mat-card>
+        </div>
+        <mat-paginator
+          [length]="100"
+          [pageSize]="20"
+          [pageSizeOptions]="[25, 50, 100]"
+          showFirstLastButtons
+        >
+        </mat-paginator>

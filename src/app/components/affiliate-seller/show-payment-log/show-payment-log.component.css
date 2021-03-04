@@ -1,0 +1,11 @@
+
+.deleteIcon{
+    cursor: pointer;
+}
+
+tr th,tr td {
+    text-align: center;
+}
+mat-dialog-actions button.close {
+    margin :auto
+}

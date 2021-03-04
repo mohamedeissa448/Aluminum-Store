@@ -1,0 +1,54 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+<form [formGroup]="BromoCodeService.form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+
+    <mat-form-field class="form-field">
+      <input matInput placeholder="Code Description*" formControlName="BromoCode_Description" />
+      <mat-error>Please enter a Code Description</mat-error>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+    <mat-form-field appearance="fill"class="form-field">
+        <mat-label>Choose a start date*</mat-label>
+        <input matInput [matDatepicker]="startDate" formControlName = "BromoCode_Start_Date" >
+        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+        <mat-datepicker #startDate></mat-datepicker>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+    <mat-form-field appearance="fill"class="form-field">
+        <mat-label>Choose an end date*</mat-label>
+        <input matInput [matDatepicker]="endDate" formControlName = "BromoCode_End_Date" >
+        <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+        <mat-datepicker #endDate></mat-datepicker>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    
+    <mat-form-field class="form-field">
+        <input matInput placeholder="BromoCode Usage Times*" formControlName="BromoCode_Usage_Times" type="number"/>
+        <mat-error>Please enter number of Usage Times</mat-error>
+      </mat-form-field>
+      <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+
+    <mat-form-field class="form-field">
+        <input matInput placeholder="Discount*" formControlName="BromoCode_Discount" type="number"/>
+        <mat-error>Please enter discount</mat-error>
+      </mat-form-field>
+      <mat-divider></mat-divider>
+    </mat-dialog-content>
+    <mat-divider></mat-divider>
+
+
+  <mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+    <button
+      mat-raised-button
+      mat-primary
+      type="submit"
+      [disabled]="BromoCodeService.form.invalid"
+    >
+      Submit
+    </button>
+  </mat-dialog-actions>
+</form>

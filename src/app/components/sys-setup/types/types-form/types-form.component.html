@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+
+<form [formGroup]="typesService.form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <mat-form-field>
+      <input matInput placeholder="AT_Number*" formControlName="AT_Number" />
+      <mat-error>Please provide an AT_Number</mat-error>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    
+    <mat-form-field>
+      <input matInput placeholder="Description" formControlName="AT_Desc" />
+      <mat-error>Please provide a desciption for the type</mat-error>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+    <button
+      mat-raised-button
+      mat-primary
+      type="submit"
+      [disabled]="
+        typesService.form.invalid 
+      "
+    >
+      Submit
+    </button>
+  </mat-dialog-actions>
+</form>

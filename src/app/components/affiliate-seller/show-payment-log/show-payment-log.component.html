@@ -1,0 +1,53 @@
+<mat-toolbar>
+    <div class="mat-toolbar-tools">
+        <h3 class="center-text">Payments Log For {{AffiliateSeller_Name}}</h3>
+    </div>
+  </mat-toolbar>
+<mat-card class="padded-content-page" >
+    <div layout="row" class="rxp-margin-top-medium hcm-contact-add-form" layout-xs="column">
+        <p>Hint : click on <span style="color : red">delete icon </span> will delete the payment record on the same row</p>
+        <!--start table-->
+        <table>
+	
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Method</th>
+                <th>Reference Number</th>
+                <th>Extra Details</th>
+                <th>Accountant Name</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr  *ngFor="let payment of AffiliateSeller_PaymentLog">
+                <td>{{ payment.Payment_Date | date}}</td>
+                <td>{{ payment.Payment_PaidAmount }}</td>
+                <td>{{ payment.Payment_PaidMethod.PaymentMethod_Name }}</td>
+                <td>{{ payment.Payment_PaymentRefranceNumber }}</td>
+                <td>{{ payment.Payment_PaymentExtraDetails }}</td>
+                <td>{{ payment.Payment_PaidByUser.User_Name }}</td>
+
+                <td> 
+                    <span class="material-icons deleteIcon"(click)="deletePayment(payment)">
+                    delete
+                    </span>
+                </td>
+              </tr>
+              <br>
+              
+          </tbody>
+          <caption>Payments log</caption>
+        </table>
+        <!-- end table-->
+        
+    </div>
+    <mat-divider class="rxp-margin-top-larg"></mat-divider>
+    
+</mat-card>
+
+<mat-dialog-actions>
+    <button mat-raised-button class="close"color="warn" (click)="onClose()">Close</button>
+  </mat-dialog-actions>
+
+
