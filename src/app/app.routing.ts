@@ -26,10 +26,10 @@ export const routes: Routes = [
       )
   },
   {
-    path: "media",
+    path: "aluminum",
     loadChildren: () =>
-      import("../app/components/media/media.module").then(
-        m => m.MediaModule
+      import("../app/components/aluminum-items/aluminum-items.module").then(
+        m => m.AluminumItemModule
       )
   },
   {

@@ -6,7 +6,7 @@
       <mat-label>select Aluminum Category</mat-label>
       <mat-select formControlName="ACT_ACat_Seri">
         <mat-option *ngFor="let AluminumCategory of AluminumCategories" [value]="AluminumCategory._id">
-          {{ AluminumCategory.ACN_Numbers }}
+          {{ AluminumCategory.ACat_ACN_Seri.ACN_Numbers  }} , {{AluminumCategory.ACat_Desc}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -16,18 +16,12 @@
       <mat-label>select Aluminum Type</mat-label>
       <mat-select formControlName="ACT_AT_Seri">
         <mat-option *ngFor="let AluminumType of AluminumTypes" [value]="AluminumType._id">
-          {{ AluminumType.ACN_Numbers }}
+          {{ AluminumType.AT_Number }} , {{ AluminumType.AT_Desc }}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-divider></mat-divider>
-    <mat-slide-toggle
-      *ngIf="title.includes('Edit')"
-      matInput
-      formControlName="Country_IsActive"
-    >
-      Country Status</mat-slide-toggle
-    >
+    
   </mat-dialog-content>
 
   <mat-dialog-actions>

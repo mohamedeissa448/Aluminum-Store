@@ -4,7 +4,6 @@ import { Routes, RouterModule } from "@angular/router";
 import { ProductUnitComponent } from './product-unit/product-unit.component';
 import { ProductMaterialFormComponent } from './product-material/product-material-form/product-material-form.component';
 import { ProductMaterialComponent } from './product-material/product-material.component';
-import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
 import { WaysOfDeliveryComponent } from './ways-of-delivery/ways-of-delivery.component';
 import { ProvinceComponent } from './province/province.component';
 import { ReasonOfReturnOrderComponent } from './reason-of-return-order/reason-of-return-order.component';
@@ -13,6 +12,7 @@ import { CodeNumberComponent } from './code-numbers/code-numbers.component';
 import { TypesComponent } from './types/types.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryTypesComponent } from './category-types/category-types.component';
+import { FactoryNamesComponent } from './factory-names/factory-names.component';
 
 const routes: Routes = [
   {
@@ -60,17 +60,18 @@ const routes: Routes = [
         canActivate: [AuthGuardService, SysSetupAuthGuardService]
       },
       
-     
       {
-        path: "manage-payment-methods",
-        component: PaymentMethodsComponent,
+        path: "manage-factory-names",
+        component: FactoryNamesComponent,
         data: { 
-          title: "Aluminum Store Manager » System Setup » Payment Methods", 
-          PageTitle: "Manage Payment Methods", 
+          title: "Aluminum Store Manager » System Setup »Factory Names", 
+          PageTitle: "ManageFactory Names", 
           Breadcrumb: 'System Setup'
         },
         canActivate: [AuthGuardService, SysSetupAuthGuardService]
       },
+
+      
       {
         path: "manage-ways-of-delivery",
         component: WaysOfDeliveryComponent,

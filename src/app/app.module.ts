@@ -17,7 +17,6 @@ import { from } from "rxjs";
 //import { PrintModule} from "./print/print.module"
 import { DashboardModule } from "./components/dashboard/dashboard.module";
 import { SysSetupModule } from "./components/sys-setup/sys-setup.module";
-import { MediaModule } from './components/media/media.module';
 import { ProductModule } from './components/product/product.module';
 import { SupplierModule } from './components/supplier/supplier.module';
 import { CategoryModule } from './components/category/category.module';
@@ -30,16 +29,18 @@ import { OrdersModule } from './components/orders/orders.module';
 import { ItemSelectChangerDirective } from './directives/item-select-changer.directive';
 import { ReportsModule } from './components/reports/reports.module';
 import { BromoCodeModule } from './components/bromoCode/bromoCode.module';
+import { AluminumItemModule } from './components/aluminum-items/aluminum-items.module';
 
 @NgModule({
   declarations: [AppComponent,ItemSelectChangerDirective],
   imports: [
     BrowserModule,
-    // Ogat Modules
+    // Aluminum Store Modules
     //PrintModule,
     DashboardModule,
     SysSetupModule,
-    MediaModule,
+    AluminumItemModule,
+    
     ProductModule,
     SupplierModule,
     CategoryModule,
@@ -51,7 +52,7 @@ import { BromoCodeModule } from './components/bromoCode/bromoCode.module';
     OrdersModule,
     ReportsModule,
     BromoCodeModule,
-    // end of Ogat Modules
+    // end of Aluminum Store Modules
     routing,
     HttpClientModule,
     NgbModule,

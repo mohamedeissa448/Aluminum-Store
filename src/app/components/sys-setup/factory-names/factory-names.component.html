@@ -1,8 +1,8 @@
 <div class="rxp-header-tool-box">
     <ul class="nav navbar-nav rxp-header-tool-box-nav">
       <div class="navbar-form search-form rxp-header-tool-search-box" id="navbar-search">
-          <input class="form-control rxp-search-text-box" (keyup)="applyFilter()" placeholder="Search for payment Methods..." 
-            type="text" autocomplete="off" [(ngModel)]="searchKey" value=""/>
+          <input class="form-control rxp-search-text-box" (keyup)="applyFilter()" placeholder="Search for factory Names..." 
+            type="text" autocomplete="off" [(ngModel)]="searchKey" />
           <button class="btn btn-default" type="button">
             <i class="icon-magnifier"></i>
           </button>
@@ -18,34 +18,17 @@
     </ul>
   </div>
   <div class="rxp-data-table-bg">
-    <table mat-table [dataSource]="paymentMethods" class="mat-elevation-z8" matSort>
+    <table mat-table [dataSource]="factoryNames" class="mat-elevation-z8" matSort>
       <!--- Note that these columns can be defined in any order.
                   The actual rendered columns are set as a property on the row definition" -->
   
-      <ng-container matColumnDef="Name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <ng-container matColumnDef="AFN_Desc">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>AFN_Desc</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.PaymentMethod_Name }}
+          {{ element.AFN_Desc }}
         </td>
       </ng-container>
   
-      <ng-container matColumnDef="Description">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.PaymentMethod_Description }}
-        </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="Active">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Active</th>
-        <td mat-cell *matCellDef="let element">
-          <input
-            type="checkbox"
-            disabled="disabled"
-            [checked]="element.PaymentMethod_IsActive == 1 ? true : false"
-          />
-        </td>
-      </ng-container>
   
       <ng-container matColumnDef="Actions">
         <th mat-header-cell *matHeaderCellDef>Tools</th>
@@ -72,11 +55,11 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       <mat-footer-row
         *matFooterRowDef="['loading']"
-        [ngClass]="{ hide: paymentMethods != null }"
+        [ngClass]="{ hide: factoryNames != null }"
       ></mat-footer-row>
       <mat-footer-row
         *matFooterRowDef="['noData']"
-        [ngClass]="{ hide: !(paymentMethods != null && paymentMethods.length == 0) }"
+        [ngClass]="{ hide: !(factoryNames != null && factoryNames.data.length == 0) }"
       ></mat-footer-row>
     </table>
     <mat-card *ngIf="isLoading" class="rxp-ingrid-loading">

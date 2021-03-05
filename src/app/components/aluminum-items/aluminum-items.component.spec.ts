@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MediaFormComponent } from './media-form.component';
+import { AluminumItemsComponent } from './aluminum-items.component';
 
-describe('MediaFormComponent', () => {
-  let component: MediaFormComponent;
-  let fixture: ComponentFixture<MediaFormComponent>;
+describe('AluminumItemsComponent', () => {
+  let component: AluminumItemsComponent;
+  let fixture: ComponentFixture<AluminumItemsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MediaFormComponent ]
+      declarations: [ AluminumItemsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MediaFormComponent);
+    fixture = TestBed.createComponent(AluminumItemsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

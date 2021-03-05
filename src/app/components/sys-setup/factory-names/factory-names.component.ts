@@ -1,23 +1,21 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatDialog, MatTableDataSource, MatDialogConfig } from '@angular/material';
-import { PaymentMethodsService } from '../services/payment-methods.service';
-import { PaymentMethodsFormComponent } from './payment-methods-form/payment-methods-form.component';
 import { AuthService } from '../../../authentication/services/auth.service';
+import { FactoryNamesService } from '../services/factory-names.service';
+import { FactoryNamesFormComponent } from './factory-names-form/factory-names-form.component';
 
 @Component({
-  selector: 'app-payment-methods',
-  templateUrl: './payment-methods.component.html',
-  styleUrls: ['./payment-methods.component.css']
+  selector: 'app-factory-names',
+  templateUrl: './factory-names.component.html',
+  styleUrls: ['./factory-names.component.css']
 })
-export class PaymentMethodsComponent implements OnInit {
+export class FactoryNamesComponent implements OnInit {
 
-  paymentMethods;
+  factoryNames;
   data;
   searchKey: string;
   displayedColumns: string[] = [
-    "Name",
-    "Description",
-    "Active",
+    "AFN_Desc",
     "Actions"
   ];
   isLoading = true;
@@ -26,7 +24,7 @@ export class PaymentMethodsComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private paymentMethodsService: PaymentMethodsService,
+    private factoryNamesService: FactoryNamesService,
     public authService :AuthService
   ) {}
 
@@ -34,33 +32,33 @@ export class PaymentMethodsComponent implements OnInit {
     this.initialize();
   }
   initialize() {
-    this.paymentMethodsService.getPaymentMethods().subscribe((paymentMethods: []) => {
+    this.factoryNamesService.getFactoryNames().subscribe((factoryNames: []) => {
       this.isLoading = false;
-      this.paymentMethods = new MatTableDataSource(paymentMethods);
-      this.paymentMethods.sort = this.sort;
-      this.paymentMethods.paginator = this.paginator;
+      this.factoryNames = new MatTableDataSource(factoryNames);
+      this.factoryNames.sort = this.sort;
+      this.factoryNames.paginator = this.paginator;
     });
   }
   onAdd() {
-    this.paymentMethodsService.form.reset();
+    this.factoryNamesService.form.reset();
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
-    dialogConfig.data = { title: "Add New Payment Method" };
-    let dialogRef=this.dialog.open(PaymentMethodsFormComponent, dialogConfig);
+    dialogConfig.data = { title: "Add New Factory Name" };
+    let dialogRef=this.dialog.open(FactoryNamesFormComponent, dialogConfig);
     dialogRef.afterClosed().subscribe((data)=>{
       this.initialize()
     })
   }
   onEdit(element) {
-    this.paymentMethodsService.popualteForm(element);
+    this.factoryNamesService.popualteForm(element);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
-    dialogConfig.data = { title: "Edit Payment Method",id:element._id };
+    dialogConfig.data = { title: "Edit Factory Name",id:element._id };
 
-    let dialogRef=this.dialog.open(PaymentMethodsFormComponent, dialogConfig);
+    let dialogRef=this.dialog.open(FactoryNamesFormComponent, dialogConfig);
     dialogRef.afterClosed().subscribe((data)=>{
       this.initialize()
     })
@@ -72,7 +70,7 @@ export class PaymentMethodsComponent implements OnInit {
   }
   applyFilter() {
     if (this.searchKey)
-      this.paymentMethods.filter = this.searchKey.trim().toLowerCase();
+      this.factoryNames.filter = this.searchKey.trim().toLowerCase();
   }
 
 

@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MediaService } from './media.service';
+import { AluminumItemsService } from './aluminum-items.service';
 
-describe('MediaService', () => {
+describe('AluminumItemsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: MediaService = TestBed.get(MediaService);
+    const service: AluminumItemsService = TestBed.get(AluminumItemsService);
     expect(service).toBeTruthy();
   });
 });

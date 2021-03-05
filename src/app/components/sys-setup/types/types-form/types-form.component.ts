@@ -39,7 +39,7 @@ export class TypeFormComponent implements OnInit {
           this.notificationService.failed(":: Something went wrong,Please try again later!");
         });
         
-      } else if (this.title === "Edit Type") {
+      } else if (this.title === "Edit A Type") {
         //update Type
         this.typesService.updateType(this.typesService.form.value,this.id).subscribe((status) => {
           if(status==true)

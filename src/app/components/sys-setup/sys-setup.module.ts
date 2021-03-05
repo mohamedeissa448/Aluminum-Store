@@ -24,8 +24,6 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { ProductMaterialComponent } from './product-material/product-material.component';
 import { ProductMaterialFormComponent } from './product-material/product-material-form/product-material-form.component';
 import { ColorPickerModule } from 'ngx-color-picker';
-import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
-import { PaymentMethodsFormComponent } from './payment-methods/payment-methods-form/payment-methods-form.component';
 import { WaysOfDeliveryComponent } from './ways-of-delivery/ways-of-delivery.component';
 import { WaysOfDeliveryFormComponent } from './ways-of-delivery/ways-of-delivery-form/ways-of-delivery-form.component';
 import { ProvinceComponent } from './province/province.component';
@@ -42,9 +40,11 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 import { CategoryTypesComponent } from './category-types/category-types.component';
 import { CategoryTypesFormComponent } from './category-types/category-types-form/category-types-form.component';
+import { FactoryNamesComponent } from './factory-names/factory-names.component';
+import { FactoryNamesFormComponent } from './factory-names/factory-names-form/factory-names-form.component';
 @NgModule({
   imports: [
-    BrowserModule,
+  BrowserModule,
     CommonModule,
     MatDatepickerModule,
     MatSlideToggleModule,
@@ -84,8 +84,8 @@ import { CategoryTypesFormComponent } from './category-types/category-types-form
   CodeNumberFormComponent,
   CategoryTypesComponent,
   CategoryTypesFormComponent,
-  PaymentMethodsComponent,
-  PaymentMethodsFormComponent,
+  FactoryNamesComponent,
+  FactoryNamesFormComponent,
   WaysOfDeliveryComponent,
   WaysOfDeliveryFormComponent,
   ProvinceComponent,
@@ -103,7 +103,7 @@ import { CategoryTypesFormComponent } from './category-types/category-types-form
     ProductMaterialFormComponent,
     CodeNumberFormComponent,
     CategoryTypesFormComponent,
-    PaymentMethodsFormComponent,
+    FactoryNamesFormComponent,
     WaysOfDeliveryFormComponent,
     ProvinceFormComponent,
     ReturnFormComponent,

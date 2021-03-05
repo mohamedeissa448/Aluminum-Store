@@ -1,0 +1,76 @@
+<mat-toolbar
+  ><h2 mat-dialog-title>{{ title }}</h2>
+  <span class="fill-remainig-space"></span>
+  <button
+    class="btn-dialog-close"
+    mat-stroked-button
+    (click)="onClose()"
+    tabindex="-1"
+  >
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+<form [formGroup]="aluminumItemsService.form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <mat-form-field>
+      <input matInput placeholder="AI_MasterNo*" formControlName="AI_MasterNo" />
+      <mat-error>Please provide an AI_MasterNo</mat-error>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-form-field>
+      <input matInput placeholder="AI_ArabicName*" formControlName="AI_ArabicName" />
+      <mat-error>Please provide an AI_ArabicName</mat-error>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-form-field>
+      <input matInput placeholder="AI_HebrewName*" formControlName="AI_HebrewName" />
+      <mat-error>Please provide an AI_HebrewName</mat-error>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+   
+    <!--      image-->
+    <img
+      *ngIf="title == 'Edit An Aluminum Item'"
+      class="serviceImage"
+      [src]="'http://localhost:3000/images/' + ImageUrl"
+    />
+    <br />
+    <div class="custom-file">
+      <input
+        #image
+        required
+        type="file"
+        class="custom-file-input"
+        id="file1"
+        name="image"
+        accept="image/x-png,image/gif,image/jpeg,image/jpg"
+        (change)="handleImageFileInput($event.target.files)"
+      />
+      <label class="custom-file-label" for="customFile">
+        <p *ngIf="!this.ImageToUpload">choose an Image :</p>
+        <p *ngIf="this.ImageToUpload">
+          Image chosed is: {{ this.ImageToUpload.name }}
+        </p>
+      </label>
+    </div>
+   
+   
+  </mat-dialog-content>
+  <p *ngIf="showErrorMSg == true" class="alert alert-danger">
+    You should choose an image
+  </p>
+  
+  <mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+    <button
+      mat-raised-button
+      mat-primary
+      type="submit"
+      [disabled]="
+        aluminumItemsService.form.invalid && !ImageToUpload
+      "
+    >
+      Submit
+    </button>
+  </mat-dialog-actions>
+</form>

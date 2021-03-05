@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { routing } from "./media.routing";
+import { routing } from "./aluminum-items.routing";
 import { RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
@@ -19,8 +19,8 @@ import { CommonModule } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
 
 import { MatCardModule } from "@angular/material/card";
-import { MediaComponent } from './media.component';
-import { MediaFormComponent } from './media-form/media-form.component';
+import { AluminumItemsFormComponent } from './aluminum-items-form/aluminum-items-form.component';
+import { AluminumItemsComponent } from './aluminum-items.component';
 
 @NgModule({
   imports: [
@@ -50,11 +50,11 @@ import { MediaFormComponent } from './media-form/media-form.component';
     MatToolbarModule, 
   ],
   declarations: [
-    MediaComponent,
-    MediaFormComponent
+    AluminumItemsComponent,
+    AluminumItemsFormComponent
 ],
   entryComponents: [
-    MediaFormComponent
+    AluminumItemsFormComponent
   ]
 })
-export class MediaModule {}
+export class AluminumItemModule {}

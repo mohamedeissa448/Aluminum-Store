@@ -1,21 +1,21 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NotificationService } from '../../../shared/services/notification.service';
-import { PaymentMethodsService } from '../../services/payment-methods.service';
+import { FactoryNamesService } from '../../services/factory-names.service';
 
 @Component({
-  selector: 'app-payment-methods-form',
-  templateUrl: './payment-methods-form.component.html',
-  styleUrls: ['./payment-methods-form.component.css']
+  selector: 'app-factory-names-form',
+  templateUrl: './factory-names-form.component.html',
+  styleUrls: ['./factory-names-form.component.css']
 })
-export class PaymentMethodsFormComponent implements OnInit {
+export class FactoryNamesFormComponent implements OnInit {
 
   id;
   title;
   constructor(
-    public paymentMethodsService: PaymentMethodsService,
+    public factoryNamesService: FactoryNamesService,
     public notificationService: NotificationService,
-    public dialogRef: MatDialogRef<PaymentMethodsFormComponent>,
+    public dialogRef: MatDialogRef<FactoryNamesFormComponent>,
     @Inject(MAT_DIALOG_DATA) private data
   ) {
     this.title = data.title;
@@ -24,15 +24,15 @@ export class PaymentMethodsFormComponent implements OnInit {
 
   ngOnInit() {}
   onClear() {
-    this.paymentMethodsService.form.reset();
+    this.factoryNamesService.form.reset();
   }
 
   onSubmit() {
-    if (this.paymentMethodsService.form.valid) {
-      //on adding size
-      if (this.title === "Add New Payment Method") {
-        this.paymentMethodsService.addPaymentMethod(
-          this.paymentMethodsService.form.value
+    if (this.factoryNamesService.form.valid) {
+      //on adding Factory Name
+      if (this.title === "Add New Factory Name") {
+        this.factoryNamesService.addFactoryName(
+          this.factoryNamesService.form.value
         ).subscribe((status) => {
           if(status==true)
           this.notificationService.success(":: Added Successfully");
@@ -40,21 +40,21 @@ export class PaymentMethodsFormComponent implements OnInit {
           this.notificationService.failed(":: Something went wrong,Please try again later!");
         });
         
-      } else if (this.title === "Edit Payment Method") {
-        //update size
-        this.paymentMethodsService.updatePaymentMethod(this.paymentMethodsService.form.value,this.id).subscribe((status) => {
+      } else if (this.title === "Edit Factory Name") {
+        //update Factory Name
+        this.factoryNamesService.updateFactoryName(this.factoryNamesService.form.value,this.id).subscribe((status) => {
           if(status==true)
           this.notificationService.success(":: Updated Successfully");
           else
           this.notificationService.failed(":: Something went wrong,Please try again later!");
         });
       }
-      this.paymentMethodsService.form.reset();
+      this.factoryNamesService.form.reset();
       this.onClose();
     }
   }
   onClose() {
-    this.paymentMethodsService.form.reset();
+    this.factoryNamesService.form.reset();
     this.dialogRef.close();
   }
 }
