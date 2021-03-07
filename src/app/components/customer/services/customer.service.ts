@@ -14,18 +14,10 @@ export class CustomerService {
   constructor(private http: HttpClient) {
     this.form = new FormGroup({
       Customer_Name: new FormControl("",[Validators.required]),
-
-        AddressName : new FormControl(""),
-        ContactName : new FormControl(""),
-        Mobile      : new FormControl(""),
-        Building    : new FormControl(""),
-        Floor       : new FormControl(""),
-        Apartment   : new FormControl(""),
-        StreetAddress: new FormControl(""),
-        City        : new FormControl(""),
-        Province    : new FormControl(""),
-  
-      Customer_Status: new FormControl(""),
+      Customer_Email : new FormControl(""),
+      Customer_Phone      : new FormControl(""),
+      Customer_Address : new FormControl(""),
+      Customer_Password    : new FormControl(""),
 
     });
   }
@@ -38,8 +30,10 @@ export class CustomerService {
     return this.http
       .post(`${systemSettings.serverURL}/customers/addCustomer`, {
         Customer_Name: customer.Customer_Name,
-        Address: customer.Address,
-        Customer_Status: customer.Customer_Status
+        Customer_Email: customer.Customer_Email,
+        Customer_Phone: customer.Customer_Phone,
+        Customer_Address: customer.Customer_Address,
+        Customer_Password: customer.Customer_Password,
       })
       .pipe(
         map((response: any) => {
@@ -56,8 +50,9 @@ export class CustomerService {
       .post(`${systemSettings.serverURL}/customers/editCustomer`, {
         _id: id,
         Customer_Name: updatedCustomer.Customer_Name,
+        Customer_Email: updatedCustomer.Customer_Email,
+        Customer_Phone: updatedCustomer.Customer_Phone,
         Address: updatedCustomer.Address,
-        Customer_Status: updatedCustomer.Customer_Status
         
       })
       .pipe(
@@ -72,10 +67,10 @@ export class CustomerService {
     this.form.setValue({
       Customer_Name: customer.Customer_Name,
 
-        AddressName : customer.Address.AddressName,
-        ContactName : customer.Address.ContactName,
-        Mobile      : customer.Address.Mobile,
-        Building    : customer.Address.Building,
+        Customer_Address : customer.Address.Customer_Address,
+        Customer_Email : customer.Address.Customer_Email,
+        Customer_Phone      : customer.Address.Customer_Phone,
+        Customer_Password    : customer.Address.Customer_Password,
         Floor       : customer.Address.Floor,
         Apartment   : customer.Address.Apartment,
         StreetAddress: customer.Address.StreetAddress,

@@ -145,7 +145,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li *ngIf="this.authService.currentUser.User_Permissions.includes('AccessCustomerModule')"
+                        <!--*ngIf="this.authService.currentUser.User_Permissions.includes('AccessCustomerModule')"-->
+                        <li 
                             routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
                             [ngClass]="{ active: currentActiveMenu == 'customer' }">
                             <a [routerLink]="['/customer/manage-customer']">

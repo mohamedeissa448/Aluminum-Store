@@ -36,18 +36,16 @@ export class ChangeCustomerStatusComponent implements OnInit {
       {
         name: "Risky",
         value: 0
-      }];
-      if(this.authService.currentUser.User_Permissions.includes('canBlockCustomers'))
-          this.statusArray.push({
-            name: "Blocked",
-            value: 2
-          })
-      if(this.authService.currentUser.User_Permissions.includes('canUnBlockCustomers'))
-          this.statusArray.push({
-            name: "Active",
-            value: 1
-          })    
+      },{
+        name: "Blocked",
+        value: 2
       
+      },{
+        name: "Active",
+            value: 1
+      }];
+           
+
   }
   submit(){
     this.customerService.changeCustomerStatus(this.id , this.Customer_Status).subscribe((status)=>{

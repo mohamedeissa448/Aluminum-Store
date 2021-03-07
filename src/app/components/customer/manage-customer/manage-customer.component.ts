@@ -23,7 +23,7 @@ export class ManageCustomerComponent implements OnInit {
    orders;
   data;
   searchKey: string;
-  displayedColumns: string[] = ["Code","Name", "Billing Address","Shipping Address","Active", "Actions"];
+  displayedColumns: string[] = ["Code","Name", "Address","Active", "Actions"];
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   
@@ -77,29 +77,8 @@ export class ManageCustomerComponent implements OnInit {
   applyFilter() {
     this.customers.filter = this.searchKey.trim().toLowerCase();
   }
-  openBillingAddress(element){
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
-    dialogConfig.data = { title: "Customer's Billing Address",id:element._id,Customer_Code:element.Customer_Code,Customer_Name:element.Customer_Name };
 
-    let dalogRef=this.dialog.open(BillingAddressFormComponent, dialogConfig);
-    dalogRef.afterClosed().subscribe((data)=>{
-      this.initializeCustomerTable();
-    })
-  }
-
-  openShippingAddress(element){
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
-    dialogConfig.data = { title: "Customer's Shipping Address",id:element._id,Customer_Code:element.Customer_Code,Customer_Name:element.Customer_Name };
-
-    let dalogRef=this.dialog.open(ShippingAddressFormComponent, dialogConfig);
-    dalogRef.afterClosed().subscribe((data)=>{
-      this.initializeCustomerTable();
-    })
-  }
+  
   openChangeCustomerStatus(element){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;

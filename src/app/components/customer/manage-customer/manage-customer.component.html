@@ -10,7 +10,9 @@
             <mat-icon>close</mat-icon>
           </button>
       </div>
-      <li *ngIf="this.authService.currentUser.User_Permissions.includes('canAddNewCustomer')">
+      <!--*ngIf="this.authService.currentUser.User_Permissions.includes('canAddNewCustomer')"-->
+      <li 
+      >
         <a (click)="onAdd()" class="icon-menu d-none d-sm-block">
           <i class="wi wi-day-sunny"></i> Add
         </a>
@@ -35,26 +37,13 @@
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="Billing Address">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Billing Address</th>
+        <ng-container matColumnDef="Address">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
           <td mat-cell *matCellDef="let element">
-            <a *ngIf="this.authService.currentUser.User_Permissions.includes('canEditCustomers')"
-              (click)="openBillingAddress(element)"><span class="material-icons contact">
-              contact_mail
-              </span></a>
+            {{ element.Customer_Address }}
           </td>
         </ng-container>
-        
-        <ng-container matColumnDef="Shipping Address">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Shipping Address</th>
-            <td mat-cell *matCellDef="let element">
-              <a *ngIf="this.authService.currentUser.User_Permissions.includes('canEditCustomers')"
-                  (click)="openShippingAddress(element)"><span class="material-icons contact">
-                contact_mail
-                </span></a>
-            </td>
-          </ng-container>
-
+      
         <ng-container matColumnDef="Active">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
           <td mat-cell *matCellDef="let element">
@@ -69,7 +58,9 @@
           <td mat-cell *matCellDef="let element"  class="rxp-grid-one-btts">
             <button class="btn btn-default mr-1" 
               (click)="onEdit(element)" title="Edit" type="button"
-              *ngIf="this.authService.currentUser.User_Permissions.includes('canEditCustomers')">
+              
+              >
+              <!--*ngIf="this.authService.currentUser.User_Permissions.includes('canEditCustomers')"-->
               <span class="sr-only">Edit</span>
               <i class="icon-pencil"></i>
             </button>

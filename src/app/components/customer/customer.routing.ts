@@ -16,7 +16,7 @@ const routes: Routes = [
           PageTitle: "Manage Customer", 
           Breadcrumb: 'Customer'
         },
-        canActivate: [AuthGuardService, ManageCustomerAuthGuardService]
+        canActivate: [AuthGuardService, ]//ManageCustomerAuthGuardService
       },
        
     ]
