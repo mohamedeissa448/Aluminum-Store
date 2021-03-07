@@ -37,7 +37,7 @@
     </mat-form-field>
     <mat-divider></mat-divider>
 
-    <mat-form-field class="form-field">
+    <mat-form-field class="form-field" *ngIf="this.title === 'Add New Customer' ">
       <input
         matInput
         placeholder="Password*"

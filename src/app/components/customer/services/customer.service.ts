@@ -66,18 +66,11 @@ export class CustomerService {
     console.log("customer", customer);
     this.form.setValue({
       Customer_Name: customer.Customer_Name,
-
-        Customer_Address : customer.Address.Customer_Address,
-        Customer_Email : customer.Address.Customer_Email,
-        Customer_Phone      : customer.Address.Customer_Phone,
-        Customer_Password    : customer.Address.Customer_Password,
-        Floor       : customer.Address.Floor,
-        Apartment   : customer.Address.Apartment,
-        StreetAddress: customer.Address.StreetAddress,
-        City        : customer.Address.City,
-        Province    : customer.Address.Province,
+        Customer_Email: customer.Customer_Email,
+        Customer_Phone: customer.Customer_Phone,
+        Customer_Address: customer.Customer_Address,
+        Customer_Password: customer.Customer_Password,
   
-      Customer_Status: customer.Customer_Status, 
     });
   }
   changeCustomerStatus (id ,Customer_Status){
