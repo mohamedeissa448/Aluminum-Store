@@ -55,8 +55,8 @@ export class CategoryTypesService {
   popualteForm(categoryType) {
     console.log("categoryType", categoryType);
     this.form.setValue({
-      ACT_ACat_Seri: categoryType.ACT_ACat_Seri  || "",
-      ACT_AT_Seri: categoryType.ACT_AT_Seri,
+      ACT_ACat_Seri: categoryType.ACT_ACat_Seri._id  || "",
+      ACT_AT_Seri: categoryType.ACT_AT_Seri._id,
     });
   }
 

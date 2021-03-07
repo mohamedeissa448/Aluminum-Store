@@ -162,6 +162,13 @@
                             </a>
                         </li>
                         <li [ngClass]="{ active: currentActiveMenu == 'inventory' }"
+                            *ngIf="1==1">
+                            <a [routerLink]="['/aluminum-factory/manage-aluminum-factory-items']">
+                                <i class="icon-book-open"></i>
+                                <span>Aluminum Factory Items</span>
+                            </a>
+                        </li>    
+                        <li [ngClass]="{ active: currentActiveMenu == 'inventory' }"
                         *ngIf="this.authService.currentUser.User_Permissions.includes('AccessInventoryModule')">
                             <a class="has-arrow" (click)="activeInactiveMenu('inventory')">
                                 <i class="icon-book-open"></i>

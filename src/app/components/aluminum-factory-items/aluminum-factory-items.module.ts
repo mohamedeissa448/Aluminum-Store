@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { routing } from "./category.routing";
+import { routing } from "./aluminum-factory-items.routing";
 import { RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
@@ -19,8 +19,8 @@ import { CommonModule } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
 
 import { MatCardModule } from "@angular/material/card";
-import { ManageCategoryComponent } from './manage-category/manage-category.component';
-import { CategoryFormComponent } from './category-form/category-form.component';
+import { ManageFactoryItemsComponent } from './manage-aluminum-factory-items/manage-aluminum-factory-items.component';
+import { FactoryItemsFormComponent } from './aluminum-factory-items-form/aluminum-factory-items-form.component';
 
 @NgModule({
   imports: [
@@ -51,11 +51,11 @@ import { CategoryFormComponent } from './category-form/category-form.component';
     MatSelectModule
   ],
   declarations: [
-    ManageCategoryComponent,
-    CategoryFormComponent
+    ManageFactoryItemsComponent,
+    FactoryItemsFormComponent
 ],
   entryComponents: [
-    CategoryFormComponent
+    FactoryItemsFormComponent
   ]
 })
-export class CategoryModule {}
+export class FactoryItemModule {}

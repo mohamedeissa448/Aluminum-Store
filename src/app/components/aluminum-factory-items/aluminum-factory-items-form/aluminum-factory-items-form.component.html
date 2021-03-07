@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+<form [formGroup]="factoryItemsService.form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>select factory name</mat-label>
+      <mat-select formControlName="AFI_AFN_Seri">
+        <mat-option *ngFor="let factoryName of factoryNames" [value]="factoryName._id">
+          {{ factoryName.AFN_Desc }} 
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+    <mat-form-field>
+      <input matInput placeholder="AFI_OriginalNumber*" formControlName="AFI_OriginalNumber" />
+      <mat-error>Please enter an Original Number</mat-error>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>select category type</mat-label>
+      <mat-select formControlName="AFI_ACT_Seri">
+        <mat-option *ngFor="let categoryType of categoryTypes" [value]="categoryType._id">
+          ACN_Number :{{ categoryType.ACT_ACat_Seri.ACat_ACN_Seri.ACN_Numbers }} ,alum type No: {{ categoryType.ACT_AT_Seri.AT_Number }} 
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>select aluminum item</mat-label>
+      <mat-select formControlName="AFI_AI_Seri">
+        <mat-option *ngFor="let aluminumItem of aluminumItems" [value]="aluminumItem._id">
+         serial: {{ aluminumItem.AI_Seri }} ,MasterNo: {{ aluminumItem.AI_MasterNo }} ,arabicName: {{  aluminumItem.AI_ArabicName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+    
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+    <button
+      mat-raised-button
+      mat-primary
+      type="submit"
+      [disabled]="factoryItemsService.form.invalid"
+    >
+      Submit
+    </button>
+  </mat-dialog-actions>
+</form>

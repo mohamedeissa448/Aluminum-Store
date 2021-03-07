@@ -33,6 +33,13 @@ export const routes: Routes = [
       )
   },
   {
+    path: "aluminum-factory",
+    loadChildren: () =>
+      import("../app/components/aluminum-factory-items/aluminum-factory-items.module").then(
+        m => m.FactoryItemModule
+      )
+  },
+  {
     path: "product",
     loadChildren: () =>
       import("../app/components/product/product.module").then(
@@ -46,13 +53,7 @@ export const routes: Routes = [
         m => m.SupplierModule
       )
   },
-  {
-    path: "category",
-    loadChildren: () =>
-      import("../app/components/category/category.module").then(
-        m => m.CategoryModule
-      )
-  },
+  
   {
     path: "users",
     loadChildren: () =>

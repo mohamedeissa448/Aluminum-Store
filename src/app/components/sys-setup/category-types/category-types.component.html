@@ -25,14 +25,14 @@
       <ng-container matColumnDef="ACT_ACat_Seri">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>ACT_ACat_Seri</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.ACT_ACat_Seri }}
+          {{ element.ACT_ACat_Seri.ACat_ACN_Seri.ACN_Numbers }} , {{ element.ACT_ACat_Seri.ACat_Desc }}
         </td>
       </ng-container>
   
       <ng-container matColumnDef="ACT_AT_Seri">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>ACT_AT_Seri</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.ACT_AT_Seri }}
+          {{ element.ACT_AT_Seri.AT_Number }} , {{ element.ACT_AT_Seri.AT_Desc }}
         </td>
       </ng-container>
   

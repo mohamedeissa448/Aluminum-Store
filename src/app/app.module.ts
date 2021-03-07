@@ -19,7 +19,6 @@ import { DashboardModule } from "./components/dashboard/dashboard.module";
 import { SysSetupModule } from "./components/sys-setup/sys-setup.module";
 import { ProductModule } from './components/product/product.module';
 import { SupplierModule } from './components/supplier/supplier.module';
-import { CategoryModule } from './components/category/category.module';
 import { ManageUserstModule } from './components/users/manage-users.module';
 import { InventoryModule } from './components/inventory/inventory.module'
 import { ShippingCompanyModule } from './components/shipping-company/shipping-company.module';
@@ -30,6 +29,7 @@ import { ItemSelectChangerDirective } from './directives/item-select-changer.dir
 import { ReportsModule } from './components/reports/reports.module';
 import { BromoCodeModule } from './components/bromoCode/bromoCode.module';
 import { AluminumItemModule } from './components/aluminum-items/aluminum-items.module';
+import { FactoryItemModule } from './components/aluminum-factory-items/aluminum-factory-items.module';
 
 @NgModule({
   declarations: [AppComponent,ItemSelectChangerDirective],
@@ -43,7 +43,7 @@ import { AluminumItemModule } from './components/aluminum-items/aluminum-items.m
     
     ProductModule,
     SupplierModule,
-    CategoryModule,
+    FactoryItemModule,
     ManageUserstModule,
     InventoryModule,
     ShippingCompanyModule,

@@ -1,8 +1,8 @@
 <div class="rxp-header-tool-box">
     <ul class="nav navbar-nav rxp-header-tool-box-nav">
       <div class="navbar-form search-form rxp-header-tool-search-box" id="navbar-search">
-          <input class="form-control rxp-search-text-box" (keyup)="applyFilter()" placeholder="Search for categories..." 
-            type="text" autocomplete="off" [(ngModel)]="searchKey" value=""/>
+          <input class="form-control rxp-search-text-box" (keyup)="applyFilter()" placeholder="Search for factory Items..." 
+            type="text" autocomplete="off" [(ngModel)]="searchKey"/>
           <button class="btn btn-default" type="button">
             <i class="icon-magnifier"></i>
           </button>
@@ -10,7 +10,7 @@
             <mat-icon>close</mat-icon>
           </button>
       </div>
-      <li *ngIf="this.authService.currentUser.User_Permissions.includes('canAddCategory')">
+      <li *ngIf="1==1">
         <a (click)="onAdd()" class="icon-menu d-none d-sm-block">
           <i class="wi wi-day-sunny"></i> Add
         </a>
@@ -18,41 +18,52 @@
     </ul>
   </div>
   <div class="rxp-data-table-bg">
-    <table mat-table [dataSource]="categories" class="mat-elevation-z8" matSort>
+    <table mat-table [dataSource]="factoryItems" class="mat-elevation-z8" matSort>
       <!--- Note that these columns can be defined in any order.
                   The actual rendered columns are set as a property on the row definition" -->
   
-      <ng-container matColumnDef="Name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <ng-container matColumnDef="AFI_Seri">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>AFI_Seri</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.Category_Name }}
+          {{ element.AFI_Seri }}
         </td>
       </ng-container>
   
-      <ng-container matColumnDef="Description">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+      <ng-container matColumnDef="AFI_AFN_Seri">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>AFI_AFN_Seri</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.Category_Description }}
+          {{ element.AFI_AFN_Seri.AFN_Desc }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="AFI_OriginalNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>AFI_OriginalNumber</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.AFI_OriginalNumber }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="AFI_ACT_Seri">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>AFI_ACT_Seri</th>
+        <td mat-cell *matCellDef="let element">
+          alum type No: {{ element.AFI_ACT_Seri.ACT_AT_Seri.AT_Number }} 
         </td>
       </ng-container>
   
-      <ng-container matColumnDef="Active">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Active</th>
+      <ng-container matColumnDef="AFI_AI_Seri">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>AFI_AI_Seri</th>
         <td mat-cell *matCellDef="let element">
-          <input
-            type="checkbox"
-            disabled="disabled"
-            [checked]="element.Category_IsActive == 1 ? true : false"
-          />
+          Serial No.:{{ element.AFI_AI_Seri.AI_Ser }} , name: {{element.AFI_AI_Seri.AI_ArabicName}}
         </td>
       </ng-container>
+      
   
       <ng-container matColumnDef="Actions">
         <th mat-header-cell *matHeaderCellDef>Tools</th>
         <td mat-cell *matCellDef="let element"  class="rxp-grid-one-btts">
           <button class="btn btn-default mr-1" 
             (click)="onEdit(element)" title="Edit" type="button"
-            *ngIf="this.authService.currentUser.User_Permissions.includes('canEditCategory')">
+            >
             <span class="sr-only">Edit</span>
             <i class="icon-pencil"></i>
           </button>
@@ -72,11 +83,11 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       <mat-footer-row
         *matFooterRowDef="['loading']"
-        [ngClass]="{ hide: categories != null }"
+        [ngClass]="{ hide: factoryItems != null }"
       ></mat-footer-row>
       <mat-footer-row
         *matFooterRowDef="['noData']"
-        [ngClass]="{ hide: !(categories != null && categories.length == 0) }"
+        [ngClass]="{ hide: !(factoryItems != null && factoryItems.data.length == 0) }"
       ></mat-footer-row>
     </table>
     <mat-card *ngIf="isLoading" class="rxp-ingrid-loading">
