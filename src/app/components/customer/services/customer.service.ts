@@ -14,6 +14,7 @@ export class CustomerService {
   constructor(private http: HttpClient) {
     this.form = new FormGroup({
       Customer_Name: new FormControl("",[Validators.required]),
+      Customer_DisplayName : new FormControl(""),
       Customer_Email : new FormControl(""),
       Customer_Phone      : new FormControl(""),
       Customer_Address : new FormControl(""),
@@ -30,6 +31,7 @@ export class CustomerService {
     return this.http
       .post(`${systemSettings.serverURL}/customers/addCustomer`, {
         Customer_Name: customer.Customer_Name,
+        Customer_DisplayName: customer.Customer_DisplayName,
         Customer_Email: customer.Customer_Email,
         Customer_Phone: customer.Customer_Phone,
         Customer_Address: customer.Customer_Address,
@@ -50,6 +52,7 @@ export class CustomerService {
       .post(`${systemSettings.serverURL}/customers/editCustomer`, {
         _id: id,
         Customer_Name: updatedCustomer.Customer_Name,
+        Customer_DisplayName: updatedCustomer.Customer_DisplayName,
         Customer_Email: updatedCustomer.Customer_Email,
         Customer_Phone: updatedCustomer.Customer_Phone,
         Address: updatedCustomer.Address,
@@ -65,7 +68,8 @@ export class CustomerService {
   popualteForm(customer) {
     console.log("customer", customer);
     this.form.setValue({
-      Customer_Name: customer.Customer_Name,
+        Customer_Name: customer.Customer_Name,
+        Customer_DisplayName: customer.Customer_DisplayName,
         Customer_Email: customer.Customer_Email,
         Customer_Phone: customer.Customer_Phone,
         Customer_Address: customer.Customer_Address,
@@ -94,8 +98,4 @@ export class CustomerService {
   }
 
   
-  ///////////////////////// Helpful routes ///////////////////
-  getProvinces() {
-    return this.http.get(`${systemSettings.serverURL}/sys-setup/provinces/getAllProvinces`)
-  }
 }

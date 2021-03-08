@@ -2,11 +2,19 @@
 {{customerService.form.value |json}}
 <form [formGroup]="customerService.form" (ngSubmit)="onSubmit()">
   <mat-dialog-content  class="d-flex p-2">
+
     <mat-form-field class="form-field">
       <input matInput placeholder="Customer Name*" formControlName="Customer_Name" />
       <mat-error>Please enter a Customer Name</mat-error>
     </mat-form-field>
     <mat-divider></mat-divider>
+
+    <mat-form-field class="form-field">
+      <input matInput placeholder="Customer Display Name*" formControlName="Customer_DisplayName" />
+      <mat-error>Please enter a Customer Display Name</mat-error>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
     <mat-form-field class="form-field">
       <input
         matInput
