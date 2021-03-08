@@ -55,7 +55,7 @@ export class CustomerService {
         Customer_DisplayName: updatedCustomer.Customer_DisplayName,
         Customer_Email: updatedCustomer.Customer_Email,
         Customer_Phone: updatedCustomer.Customer_Phone,
-        Address: updatedCustomer.Address,
+        Customer_Address: updatedCustomer.Customer_Address,
         
       })
       .pipe(
