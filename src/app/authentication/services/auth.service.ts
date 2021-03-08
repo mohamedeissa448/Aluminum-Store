@@ -24,8 +24,8 @@ export class AuthService {
           }*/
           // response.token =
           //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlcyI6WyJzeXMtc2V0dXAiLCJvdGhlciJdLCJuYW1lIjoiV2FlbCIsImlhdCI6MTUxNjIzOTAyMn0.5GfiS-NhqP3QGFoqStpKY4zHoV0HP_Zq2th3LBVePJY";
-          if (response && response.status != false) {
-            localStorage.setItem("token", JSON.stringify(response));
+          if (response && response.token) {
+            localStorage.setItem("token", JSON.stringify(response.token));
            // localStorage.setItem("LogedInUser",JSON.stringify(response.user));
             return true;
           }
@@ -47,6 +47,8 @@ export class AuthService {
   get currentUser():any {
     let token = localStorage.getItem("token");
     if (!token) return null;
-    return (JSON.parse(token));
-  }
+    const help = new JwtHelperService();
+    const user = help.decodeToken(token);
+    console.log("userrrrrrrrrrrr",user)
+    return user;  }
 }
